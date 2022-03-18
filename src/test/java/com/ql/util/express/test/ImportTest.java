@@ -19,5 +19,14 @@ public class ImportTest {
         Assert.assertEquals("import 实现错误", "1000", r.toString());
         System.out.println(r);
         System.out.println(context);
+
+        context.put("a", "张三");
+        //相当于变量a和"张三"的值比较
+        System.out.println("test String" + runner.execute("a == \"张三\"", context, null, false, true));
+        System.out.println("test String" + runner.execute("a == '张三'", context, null, false, true));
+        //相当于两个变量a和张三比较，返回false
+        System.out.println("test String" + runner.execute("a == 张三", context, null, false, true));
+        //相当于两个变量a比较，所以返回true
+        System.out.println("test String" + runner.execute("a == a", context, null, false, true));
     }
 }
